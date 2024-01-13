@@ -17,7 +17,7 @@ shortix_script () {
     elif [ "$(command -v $PROTONTRICKS_FLAT)" ]; then
         PROTONTRICKS=$PROTONTRICKS_FLAT
     else
-        echo "Protontricks could not be found! Please install it. Aborting..."
+        echo "找不到 Protontricks！请先在 Discover 应用商店中安装，终止..."
         exit
     fi
     eval "$PROTONTRICKS" -l > $TEMPFILE 2> /dev/null
@@ -109,7 +109,7 @@ shortix_script () {
 }
 
 if [ ! -d $COMPDATA ]; then
-    echo "Steam compatibility data directory (${COMPDATA}) could not be found! Aborting..."
+    echo "无法找到 Steam 兼容层数据目录 (${COMPDATA}) ！终止..."
     exit
 fi
 
@@ -131,4 +131,4 @@ else
     fi
 fi
 
-echo "Done, you can close this window now!"
+echo "完成，现在可以关闭此窗口！"

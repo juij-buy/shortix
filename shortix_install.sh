@@ -1,13 +1,13 @@
 #/bin/bash
 
 if [ -d $HOME/Shortix/ ] || [ -f $HOME/.config/systemd/user/shortix.service ]; then
-  TYPE="updater"
-  kdialog --title "Shortix $TYPE" --msgbox "Welcome to Shortix! This setup will update Shortix."
+  TYPE="更新"
+  kdialog --title "Shortix $TYPE" --msgbox "欢迎来到 Shortix！此设置将更新 Shortix。"
 
   rm -rf $HOME/Shortix
 else
-  TYPE="installer"
-  kdialog --title "Shortix installer" --msgbox "Welcome to Shortix! This setup will install Shortix."
+  TYPE="安装"
+  kdialog --title "Shortix 安装程序" --msgbox "欢迎来到 Shortix！此安装程序将安装 Shortix。"
 fi
 
 mkdir -p $HOME/Shortix
@@ -18,7 +18,7 @@ chmod +x $HOME/Shortix/remove_prefix.sh
 
 
 
-kdialog --title "Shortix $TYPE" --yesno "Would you like to add the prefix id to the shortcut name?\nLike this:\nGame Name (123455678)" 2> /dev/null
+kdialog --title "Shortix $TYPE" --yesno "是否将兼容层 ID 添加到快捷方式名称？\n例如：\n游戏名称 (123455678)" 2> /dev/null
 case $? in
 0)  if [ ! -f $HOME/Shortix/.id ]; then
       touch $HOME/Shortix/.id
@@ -31,7 +31,7 @@ case $? in
 esac
 
 if [ -f $HOME/Shortix/.id ]; then
-  kdialog --title "Shortix $TYPE" --yesno "Would you also like to add the size of the target directory to the shortcut name?\nLike this: \nGame Name (123455678) - 1.6G" 2> /dev/null
+  kdialog --title "Shortix $TYPE" --yesno "是否还要将目标文件目录的大小添加到快捷方式名称中？\n例如：\n游戏名称 (123455678) - 1.6G" 2> /dev/null
   case $? in
   0)  if [ ! -f $HOME/Shortix/.size ]; then
         touch $HOME/Shortix/.size
@@ -43,7 +43,7 @@ if [ -f $HOME/Shortix/.id ]; then
       ;;
   esac
 else
-  kdialog --title "Shortix $TYPE" --yesno "Would you like to add the size of the target directory to the shortcut name?\nLike this:\nGame Name - 1.6G?"
+  kdialog --title "Shortix $TYPE" --yesno "是否将目标文件目录的大小添加到快捷方式名称中？\n例如：\n游戏名称 - 1.6G？"
   case $? in
   0)  if [ ! -f $HOME/Shortix/.size ]; then
         touch $HOME/Shortix/.size
@@ -56,7 +56,7 @@ else
   esac
 fi
 
-kdialog --title "Shortix $TYPE" --yesno "Would you like to setup system service for background updates?"
+kdialog --title "Shortix $TYPE" --yesno "是否设置系统服务进行后台更新？"
 case $? in
 0)  if [ ! -d $HOME/.config/systemd/user ]; then
     mkdir -p $HOME/.config/systemd/user
@@ -89,5 +89,5 @@ if [ -f $HOME/.config/user-dirs.dirs ]; then
   fi
 fi
 
-kdialog --title "Shortix $TYPE" --msgbox "Shortix is set up!"
+kdialog --title "Shortix $TYPE" --msgbox "Shortix 已就绪！"
 [ $? = 0 ] && exit
